@@ -3,9 +3,11 @@ WORKDIR /src
 ENV DEBIAN_FRONTEND="noninteractive"
 ENV YARN_NODE_LINKER="node-modules"
 
-COPY .devcontainer/.bashrc .devcontainer/.profile .devcontainer/.git-completion /root/
+COPY .devcontainer/.bashrc .devcontainer/.profile .devcontainer/.git-completion .devcontainer/.pgpass /root/
 
-RUN apt-get update && apt-get install -y apt-transport-https build-essential curl vim nano git git-lfs unzip zip ca-certificates gnupg2 software-properties-common python3
+RUN chmod 600 /root/.pgpass
+
+RUN apt-get update && apt-get install -y apt-transport-https build-essential curl vim nano git git-lfs unzip zip ca-certificates gnupg2 software-properties-common python3 postgresql
 
 # Docker CLI 
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg \
