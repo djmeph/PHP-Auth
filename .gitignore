@@ -4,3 +4,7 @@
 # Composer
 vendor/
 composer.phar
+
+# System Files
+.DS_Store
+Thumbs.db
